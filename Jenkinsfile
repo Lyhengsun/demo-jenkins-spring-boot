@@ -15,8 +15,8 @@ pipeline {
                     echo "Hello world"
                     uname -r
                 '''
-                sh 'echo test test'
-                sh 'test push the third time'
+                sh 'echo "test test"'
+                sh 'echo "test push the third time"'
             }
         }
     }
