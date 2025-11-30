@@ -10,8 +10,15 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh 'echo "[Current Directory]: $(pwd)"'
-                sh 'echo -e "Existing Files:\n$(ls -a)"'
+                script {
+                    env.CURRENT_DIR = sh(script: 'pwd', returnStdout: true).trim()
+                    env.FILES = sh(script: 'ls -a', returnStdout: true)
+                }
+                sh """
+                    echo "[Current Directory]: ${env.CURRENT_DIR}"
+                    echo "Existing Files:"
+                    echo "${env.FILES}"
+                """
             }
         }
     }
