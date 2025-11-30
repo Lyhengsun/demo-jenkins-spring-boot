@@ -10,6 +10,7 @@ pipeline {
                     echo "Hello world"
                     uname -r
                 '''
+                sh 'echo test'
             }
         }
     }
