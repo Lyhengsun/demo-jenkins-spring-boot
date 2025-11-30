@@ -1,22 +1,16 @@
 /* Requires the Docker Pipeline plugin */
 /* groovylint-disable-next-line CompileStatic */
 pipeline {
-    agent any
+    agent { docker { image 'gradle:9.1.0-jdk21-alpine' } }
     stages {
         stage('build') {
             steps {
-                script {
-                    def dockerImage = docker.image('gradle:9.1.0-jdk21-alpine')
-                    dockerImage.pull()
-                    dockerImage.inside {
-                        sh 'gradle --version'
-                        sh '''
-                            echo "Hello world"
-                            uname -r
-                        '''
-                        sh 'echo test test'
-                    }
-                }
+                sh 'gradle --version'
+                sh '''
+                    echo "Hello world"
+                    uname -r
+                '''
+                sh 'echo test test'
             }
         }
     }
