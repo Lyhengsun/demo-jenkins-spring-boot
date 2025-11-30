@@ -16,6 +16,7 @@ pipeline {
                     uname -r
                 '''
                 sh 'echo test test'
+                sh 'test push the third time'
             }
         }
     }
