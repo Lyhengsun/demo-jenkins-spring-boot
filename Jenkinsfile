@@ -8,24 +8,10 @@ pipeline {
         }
     }
     stages {
-        stage('Setup Docker CLI') {
-            steps {
-                echo '⚙️ Installing Docker CLI inside Gradle container...'
-                sh 'apk add --no-cache docker-cli bash'
-            }
-        }
-
         stage('Test') {
             steps {
-                sh 'echo "Testing..."'
-                script {
-                    env.CURRENT_DIR = sh(script: 'pwd', returnStdout: true).trim()
-                    env.FILES = sh(script: 'ls -a', returnStdout: true)
-                }
-                sh """
-                    echo "[Current Directory]: ${env.CURRENT_DIR}"
-                """
-                sh 'docker --version'
+                sh 'pwd'
+                sh 'cat /etc/os-release'
             }
         }
     }
