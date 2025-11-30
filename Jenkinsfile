@@ -10,15 +10,15 @@ pipeline {
     stages {
         stage('Test') {
             steps {
+                sh 'echo "Testing..."'
                 script {
                     env.CURRENT_DIR = sh(script: 'pwd', returnStdout: true).trim()
                     env.FILES = sh(script: 'ls -a', returnStdout: true)
                 }
                 sh """
                     echo "[Current Directory]: ${env.CURRENT_DIR}"
-                    echo "Existing Files:"
-                    echo "${env.FILES}"
                 """
+                sh 'docker --version'
             }
         }
     }
