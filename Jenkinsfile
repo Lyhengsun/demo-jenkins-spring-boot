@@ -8,10 +8,10 @@ pipeline {
         }
     }
     stages {
-        stage('build') {
+        stage('Test') {
             steps {
-                sh "echo [Current Directory]: "
-                sh "pwd"
+                sh 'echo "[Current Directory]: $(pwd)"'
+                sh 'echo -e "Existing Files:\n$(ls -a)"'
             }
         }
     }
