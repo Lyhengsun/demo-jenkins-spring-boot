@@ -8,12 +8,13 @@ pipeline {
     //     }
     // }
     agent any
-    
+
     stages {
         stage('Test') {
             steps {
                 sh 'pwd'
                 sh 'cat /etc/os-release'
+                sh 'docker --version'
             }
         }
     }
