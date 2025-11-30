@@ -10,13 +10,8 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'gradle --version'
-                sh '''
-                    echo "Hello world"
-                    uname -r
-                '''
-                sh 'echo "test test"'
-                sh 'echo "test push the third time"'
+                sh "echo [Current Directory]: "
+                sh "pwd"
             }
         }
     }
