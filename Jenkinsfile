@@ -8,6 +8,13 @@ pipeline {
         }
     }
     stages {
+        stage('Setup Docker CLI') {
+            steps {
+                echo '⚙️ Installing Docker CLI inside Gradle container...'
+                sh 'apk add --no-cache docker-cli bash'
+            }
+        }
+
         stage('Test') {
             steps {
                 sh 'echo "Testing..."'
