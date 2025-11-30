@@ -1,0 +1,16 @@
+/* Requires the Docker Pipeline plugin */
+/* groovylint-disable-next-line CompileStatic */
+pipeline {
+    agent { docker { image 'gradle:9.1.0-jdk21-alpine' } }
+    stages {
+        stage('build') {
+            steps {
+                sh 'gradle --version'
+                sh '''
+                    echo "Hello world"
+                    uname -r
+                '''
+            }
+        }
+    }
+}
