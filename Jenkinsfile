@@ -46,9 +46,9 @@ pipeline {
 
         stage('Build & Push Image') {
             environment {
-                MESSAGE = '[demo-jenkins-spring] Stage [Build \\& Push Image] initiated'
-                MESSAGE_END_SUCCESS = '[demo-jenkins-spring] Stage [Build \\& Push Image] ended successfully'
-                MESSAGE_END_FAILURE = '[demo-jenkins-spring] Stage [Build \\& Push Image] failed'
+                MESSAGE = '[demo-jenkins-spring] Stage [Build and Push Image] initiated'
+                MESSAGE_END_SUCCESS = '[demo-jenkins-spring] Stage [Build and Push Image] ended successfully'
+                MESSAGE_END_FAILURE = '[demo-jenkins-spring] Stage [Build and Push Image] failed'
             }
 
             steps {
