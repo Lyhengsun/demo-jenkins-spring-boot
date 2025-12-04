@@ -59,6 +59,7 @@ pipeline {
                     echo $DOCKERHUB_CREDS_PSW | docker login -u $DOCKERHUB_CREDS_USR --password-stdin
                     docker build -t ${IMAGE_REPO}:${IMAGE_TAG} .
                     docker push ${IMAGE_REPO}:${IMAGE_TAG}
+                    docker tag ${IMAGE_REPO}:${IMAGE_TAG} ${IMAGE_REPO}:latest
                     docker logout
                 '''
             }
