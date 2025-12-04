@@ -7,7 +7,8 @@ COPY gradlew .
 COPY gradle gradle
 # Download dependencies first (cached unless build files change)
 COPY build.gradle settings.gradle ./
-RUN ./gradlew dependencies --no-daemon
+RUN --mount=type=cache,target=./.gradle \
+    ./gradlew dependencies --no-daemon
 
 # Then copy source and build (only invalidated when source changes)
 COPY src src
