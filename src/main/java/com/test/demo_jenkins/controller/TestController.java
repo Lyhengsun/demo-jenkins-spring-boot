@@ -12,4 +12,8 @@ public class TestController {
         return "test";
     }
     
+    @GetMapping("/second")
+    public String getTestSecond() {
+        return "test second";
+    }
 }
