@@ -32,6 +32,7 @@ pipeline {
                 sh 'pwd'
                 sh 'cat /etc/os-release'
                 sh 'docker --version'
+                sh "echo $USER"
             }
 
             post {
