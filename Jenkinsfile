@@ -60,6 +60,7 @@ pipeline {
                     docker build -t ${IMAGE_REPO}:${IMAGE_TAG} .
                     docker push ${IMAGE_REPO}:${IMAGE_TAG}
                     docker tag ${IMAGE_REPO}:${IMAGE_TAG} ${IMAGE_REPO}:latest
+                    docker push ${IMAGE_REPO}:latest
                     docker logout
                 '''
             }
