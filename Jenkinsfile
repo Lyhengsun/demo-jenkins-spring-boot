@@ -46,21 +46,19 @@ pipeline {
 
         stage('Build & Push Image') {
             environment {
-                MESSAGE = '[demo-jenkins-spring] Stage [Build & Push Image] initiated'
-                MESSAGE_END_SUCCESS = '[demo-jenkins-spring] Stage [Build & Push Image] ended successfully'
-                MESSAGE_END_FAILURE = '[demo-jenkins-spring] Stage [Build & Push Image] failed'
+                MESSAGE = '[demo-jenkins-spring] Stage [Build \\& Push Image] initiated'
+                MESSAGE_END_SUCCESS = '[demo-jenkins-spring] Stage [Build \\& Push Image] ended successfully'
+                MESSAGE_END_FAILURE = '[demo-jenkins-spring] Stage [Build \\& Push Image] failed'
             }
 
             steps {
                 sh 'curl -s -X POST https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage -d chat_id=$TELEGRAM_CHAT_ID -d text="$MESSAGE" > /dev/null'
-                sh(
-                    script: '''
-                        echo $DOCKERHUB_CREDS_PWD | docker login -u $DOCKERHUB_CREDS_USR --password-stdin
-                        docker build -t ${IMAGE_REPO}:${IMAGE_TAG} .
-                        docker push ${IMAGE_REPO}:${IMAGE_TAG}
-                        docker logout
-                    ''', returnStdout: false
-                )
+                sh '''
+                    echo $DOCKERHUB_CREDS_PSW | docker login -u $DOCKERHUB_CREDS_USR --password-stdin
+                    docker build -t ${IMAGE_REPO}:${IMAGE_TAG} .
+                    docker push ${IMAGE_REPO}:${IMAGE_TAG}
+                    docker logout
+                '''
             }
 
             post {
