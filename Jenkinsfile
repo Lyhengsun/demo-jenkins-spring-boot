@@ -48,7 +48,7 @@ pipeline {
 
         stage('Cleanup before build') {
             steps {
-                sh 'docker system prune -af --volumes'
+                sh 'docker image prune'
             }
         }
 
