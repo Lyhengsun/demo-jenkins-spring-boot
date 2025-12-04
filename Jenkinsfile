@@ -48,7 +48,7 @@ pipeline {
 
         stage('Cleanup before build') {
             steps {
-                sh 'docker image prune'
+                sh 'echo y | docker image prune'
             }
         }
 
