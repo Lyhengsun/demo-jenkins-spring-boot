@@ -58,9 +58,9 @@ pipeline {
                 sh 'cat /etc/os-release'
                 sh '''
                     echo $DOCKERHUB_CREDS_PSW | docker login -u $DOCKERHUB_CREDS_USR --password-stdin
-                    && docker build -t ${IMAGE_REPO}:${IMAGE_TAG} .
-                    && docker push ${IMAGE_REPO}:${IMAGE_TAG}
-                    && docker logout
+                    docker build -t ${IMAGE_REPO}:${IMAGE_TAG} .
+                    docker push ${IMAGE_REPO}:${IMAGE_TAG}
+                    docker logout
                 '''
             }
 
