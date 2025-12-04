@@ -16,6 +16,8 @@ pipeline {
         IMAGE_TAG      = "${env.BUILD_NUMBER}"
     }
 
+    agent any
+        
     stages {
         stage('Test') {
             agent {
