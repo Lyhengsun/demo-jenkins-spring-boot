@@ -16,13 +16,12 @@ pipeline {
         IMAGE_TAG      = "${env.BUILD_NUMBER}"
     }
 
-    agent any
+    agent {
+        label 'debian-linux'
+    }
         
     stages {
         stage('Test') {
-            agent {
-                label 'debian-linux'
-            }
             environment {
                 MESSAGE = '[demo-jenkins-spring] Stage Test initiated'
                 MESSAGE_END_SUCCESS = '[demo-jenkins-spring] Stage Test ended successfully'
@@ -48,10 +47,6 @@ pipeline {
         }
 
         stage('Build & Push Image') {
-            agent {
-                label 'debian-linux'
-            }
-
             environment {
                 MESSAGE = '[demo-jenkins-spring] Stage [Build and Push Image] initiated'
                 MESSAGE_END_SUCCESS = '[demo-jenkins-spring] Stage [Build and Push Image] ended successfully'
@@ -60,7 +55,7 @@ pipeline {
 
             steps {
                 sh 'curl -s -X POST https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage -d chat_id=$TELEGRAM_CHAT_ID -d text="$MESSAGE" > /dev/null'
-                sh "echo $USER"
+                sh 'cat /etc/os-release'
                 sh '''
                     echo $DOCKERHUB_CREDS_PSW | docker login -u $DOCKERHUB_CREDS_USR --password-stdin
                     docker build -t ${IMAGE_REPO}:${IMAGE_TAG} .
