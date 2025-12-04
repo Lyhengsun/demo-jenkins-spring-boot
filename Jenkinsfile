@@ -46,6 +46,12 @@ pipeline {
             }
         }
 
+        stage('Cleanup before build') {
+            steps {
+                sh 'docker system prune -af --volumes'
+            }
+        }
+
         stage('Build & Push Image') {
             environment {
                 MESSAGE = '[demo-jenkins-spring] Stage [Build and Push Image] initiated'
