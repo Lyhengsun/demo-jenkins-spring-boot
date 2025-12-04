@@ -6,9 +6,6 @@ pipeline {
     //         args '-u 0 -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/jenkins/.gradle:/home/gradle/.gradle'
     //     }
     // }
-    agent {
-        label 'debian-linux'
-    }
 
     environment {
         DOCKERHUB_CREDS = credentials('hengsun-docker-creds')
@@ -21,6 +18,9 @@ pipeline {
 
     stages {
         stage('Test') {
+            agent {
+                label 'debian-linux'
+            }
             environment {
                 MESSAGE = '[demo-jenkins-spring] Stage Test initiated'
                 MESSAGE_END_SUCCESS = '[demo-jenkins-spring] Stage Test ended successfully'
