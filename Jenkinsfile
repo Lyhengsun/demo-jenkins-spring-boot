@@ -46,6 +46,10 @@ pipeline {
         }
 
         stage('Build & Push Image') {
+            agent {
+                label 'debian-linux'
+            }
+
             environment {
                 MESSAGE = '[demo-jenkins-spring] Stage [Build and Push Image] initiated'
                 MESSAGE_END_SUCCESS = '[demo-jenkins-spring] Stage [Build and Push Image] ended successfully'
