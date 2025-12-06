@@ -18,7 +18,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
 				description = "Endpoints"
 		),
 		servers = {
-				@Server(url = "/")
+				@Server(url = "/test")
 		}
 )
 @SecurityScheme(name = "bearerAuth", type = SecuritySchemeType.HTTP, scheme = "bearer", in = SecuritySchemeIn.HEADER)
